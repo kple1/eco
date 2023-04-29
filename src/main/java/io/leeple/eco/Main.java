@@ -10,7 +10,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 
 import static io.leeple.eco.Data.PlayerData.config;
 import static io.leeple.eco.Data.PlayerData.playerFile;
