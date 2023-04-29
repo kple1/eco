@@ -14,15 +14,16 @@ public class CountEco implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player player) {
-            YamlConfiguration config = PlayerData.Config(args, sender);
+            if (player.isOp()) {
+                YamlConfiguration config = PlayerData.Config(args, sender);
 
-            int ecoToAdd = Integer.parseInt(args[2]);
-            int configValue = Integer.parseInt(config.getString("eco"));
-            int result = configValue + ecoToAdd;
-            config.set("eco", result);
-            Main.getPlugin().saveYamlConfiguration(player);
+                int ecoToAdd = Integer.parseInt(args[2]);
+                int configValue = Integer.parseInt(config.getString("eco"));
+                int result = configValue + ecoToAdd;
+                config.set("eco", result);
+                Main.getPlugin().saveYamlConfiguration(player);
+            }
         }
         return false;
     }
-
 }
