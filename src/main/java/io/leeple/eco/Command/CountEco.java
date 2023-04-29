@@ -9,8 +9,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import static io.leeple.eco.Data.PlayerData.playerFile;
-
 public class CountEco implements CommandExecutor {
 
     @Override
@@ -19,9 +17,12 @@ public class CountEco implements CommandExecutor {
             YamlConfiguration config = PlayerData.Config(args, sender);
 
             int ecoToAdd = Integer.parseInt(args[2]);
-            config.set("eco", ecoToAdd);
-            Main.getPlugin().saveYamlConfiguration(config, YamlConfiguration.loadConfiguration(playerFile));
+            int configValue = Integer.parseInt(config.getString("eco"));
+            int result = configValue + ecoToAdd;
+            config.set("eco", result);
+            Main.getPlugin().saveYamlConfiguration(player);
         }
         return false;
     }
+
 }

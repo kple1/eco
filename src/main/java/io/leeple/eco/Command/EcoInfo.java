@@ -15,7 +15,7 @@ public class EcoInfo implements CommandExecutor {
         if (sender instanceof Player player) {
             if (args.length > 0) {
                 YamlConfiguration config = PlayerData.Config(args, sender);
-                String eco = config.getString("eco");
+                int eco = Integer.parseInt(config.getString("eco"));
                 player.sendMessage(ColorUtils.chat("&aeconomy&f: " + eco + "원"));
             }
         }

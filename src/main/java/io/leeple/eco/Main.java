@@ -2,13 +2,18 @@ package io.leeple.eco;
 
 import io.leeple.eco.Command.EcoCommand;
 import io.leeple.eco.Listener.CreateFile;
+import io.leeple.eco.Utils.ColorUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+
+import static io.leeple.eco.Data.PlayerData.config;
+import static io.leeple.eco.Data.PlayerData.playerFile;
 
 public final class Main extends JavaPlugin {
 
@@ -38,20 +43,20 @@ public final class Main extends JavaPlugin {
         saveDefaultConfig();
     }
 
-    public void saveYamlConfiguration(YamlConfiguration config, YamlConfiguration file) {
+    public void saveYamlConfiguration(Player player) {
         try {
-            config.save(String.valueOf(file));
+            config.save(playerFile);
+            player.sendMessage(ColorUtils.chat("&c설정이 저장 되었습니다"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void createPlayerDefaults(UUID uuid) {
-        File playerFile = new File(uuidFolder, uuid.toString() + ".yml");
+    public void createPlayerDefaults(Player player) {
         YamlConfiguration playerConfig = YamlConfiguration.loadConfiguration(playerFile);
         playerConfig.addDefault("eco", "0");
         playerConfig.options().copyDefaults(true);
-        saveYamlConfiguration(playerConfig, YamlConfiguration.loadConfiguration(playerFile));
+        saveYamlConfiguration(player);
     }
 
     public File getUuidFolder() {
