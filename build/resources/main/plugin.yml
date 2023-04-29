@@ -1,0 +1,8 @@
+name: eco
+version: '1.0.0'
+main: io.leeple.eco.Main
+api-version: 1.13
+
+commands:
+  Eco:
+    aliases: "레벨"
