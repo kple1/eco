@@ -23,6 +23,16 @@ public class EcoCommand implements CommandExecutor {
                         EcoInfo EI = new EcoInfo();
                         EI.onCommand(sender, command, label, args);
                     }
+
+                    case "reset", "초기화" -> {
+                        ResetEco RE = new ResetEco();
+                        RE.onCommand(sender, command, label, args);
+                    }
+
+                    case "discount", "차감" -> {
+                        DiscountEco DE = new DiscountEco();
+                        DE.onCommand(sender, command, label, args);
+                    }
                 }
             }
         }
